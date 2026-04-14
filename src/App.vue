@@ -1,5 +1,6 @@
 <script setup>
   import { ref } from 'vue';
+  import ProdutoChild from './components/ProdutoChild.vue';
   const produtos = ref([
 { id: 1, nome: 'Ração Premium Cães', preco: 120, categoria: 'Alimentos' },
 { id: 2, nome: 'Ração Gatos Castrados', preco: 95, categoria: 'Alimentos' },
@@ -32,10 +33,9 @@ function salvarPreco(){
   <h1>Catálogo de Produtos</h1>
   <div>
     <ul>
-      <li v-for="produto in produtos" :key="produto.id">
-        {{ produto.nome }} -R$ {{ produto.preco }} ({{ produto.categoria }})
+      <ProdutoChild v-for="produto in produtos" :key="produto.id" :nome="produto.nome" :preco="produto.preco" :categoria="produto.categoria">
           <button @click.prevent="corrigirPreco(produto.id, produto.preco)"> Corrigir Preço</button>
-      </li>
+      </ProdutoChild>
     </ul>
   </div>
   <div v-show="alterando">
